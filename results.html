@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crawl Hub</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: rgba(173, 216, 230, 0.8);
+      }
+
+      .main-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+
+      h1 {
+        font-size: 2em;
+        font-weight: bold;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      p {
+        line-height: 1.5;
+      }
+
+      ul {
+        list-style-type: disc;
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .no-data {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      {% if data %}
+      <h1>Crawled Data:</h1>
+      <ul>
+        <li><h2>Title: {{ data.title }}</h2></li>
+        <li><p>Content: {{ data.content }}</p></li>
+        <li>
+          <h3>Extracted Links:</h3>
+          <ul>
+            {% for link in data.links %}
+            <li><a href="{{ link }}">{{ link }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+      {% else %}
+      <p class="no-data">No data crawled yet.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

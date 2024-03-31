@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crawl Hub</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .background {
+        background-color: rgba(173, 216, 230, 0.8);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      input[type="text"] {
+        padding: 5px;
+        width: 200px;
+      }
+
+      input[type="submit"] {
+        padding: 5px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      .error-message {
+        color: red;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .logo-container {
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background">
+      <div class="container">
+        <div class="logo-container">
+          <img src="{% static 'CrawlHub/logo.png' %}" />
+        </div>
+        <div class="content-container">
+          <h1>Crawl Hub</h1>
+          <form method="POST">
+            {% csrf_token %}
+            <label for="url">Enter URL:</label>
+            <input type="text" name="url" id="url" />
+            <br /><br />
+            <input type="submit" value="Start Crawling" />
+          </form>
+          {% if error_message %}
+          <p class="error-message">{{ error_message }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
